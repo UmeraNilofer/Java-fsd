@@ -1,44 +1,27 @@
-package com;
-
-class SyncDemo extends Thread{
-
-	@Override
-	public synchronized void run() {
-		Thread t= Thread.currentThread();
-		String name= t.getName();
-		for(int i=0;i<10;i++) {
-			System.out.println(name+" i "+i);
-			try {
-				Thread.sleep(1500);
-				if(i==3 && name=="Honda") {
-					wait();
-				}
-				notify();
-				if(i==5 && name=="Activa") {
-					notify();
-					wait();
-				}
-				notifyAll();
-			}catch(Exception e) {}
-		}
-	}
-	
-}
 
 public class PracticeProject3 {
 
 	public static void main(String[] args) {
-		Thread t=Thread.currentThread();
-		SyncDemo s=new SyncDemo();
-		Thread t1=new Thread(s);
-		Thread t2=new Thread(s);
-		Thread t3=new Thread(s);
-		System.out.println(t);
-		t1.setName("Activa");
-		t2.setName("Honda");
-		t3.setName("Pulsar");
-		t1.start();
-		t2.start();
-		t3.start();
-	  }
+		nocall();
+		minus(22,35);
+		String res= value("Rosy!") ;
+		System.out.println("Hey, "+res);
+	}
+		
+		//no passing parameters and no return type
+		 static void nocall() {
+			System.out.println("No parameter passing and No return type");
+
+	}
+
+		//passing parameters and no return type
+		 static void minus(int x,int y) {
+			 int sub=x-y;
+			System.out.println("Subtraction of x and y:"+sub);
+		 }
+		 
+		 //passing parameters and return type
+		 static String value(String name) {
+			 return "Hello "+name;
+		 }
 }
